@@ -1,0 +1,19 @@
+<h2>Por Capital</h2>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <app-pais-input [placeholder]="placeholder" (onEnter)="buscar($event)" (onDebounce)="sugerencias($event)"></app-pais-input>
+  </div>
+</div>
+
+<hr>
+<div *ngIf="existError" class="alert alert-danger animate__animated animate__shakeX">
+  No hubo respuesta con el <strong>termino</strong> ingresado...
+</div>
+
+<div *ngIf="!existError && capitales.length > 0" class="row animate__animated animate__fadeIn">
+  <div class="col">
+    <app-pais-tabla [paises]="capitales"></app-pais-tabla>
+  </div>
+</div>

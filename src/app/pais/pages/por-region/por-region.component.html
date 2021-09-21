@@ -1,0 +1,24 @@
+<h3>Buscar por región <small> {{regionActiva |titlecase}}</small></h3>
+<hr>
+
+<h5>Selecciones la region</h5>
+<div class="row">
+  <div class="col">
+
+    <!--? Alternativa 1 -> [class.active]="regionActiva === region" -->
+    <!--? Alternativa 2 -> [ngClass]="{'btn-primary': regionActiva === region, 'btn-outline-primary': regionActiva !== region}" -->
+    <!--? Alternativa 3 [class]="(region === regionActiva) ? 'btn-primary' : 'btn-outline-primary'" -->
+    <button (click)="activarRegion(region)" class="btn" [class]="claseDeBoton(region)" *ngFor="let region of regiones">{{region |titlecase}}</button>
+  </div>
+</div>
+
+<hr>
+<div *ngIf="existError" class="alert alert-danger animate__animated animate__shakeX">
+  No hubo respuesta con el <strong>termino</strong> ingresado...
+</div>
+
+<div *ngIf="!existError && paises.length > 0" class="row animate__animated animate__fadeIn">
+  <div class="col">
+    <app-pais-tabla [paises]="paises"></app-pais-tabla>
+  </div>
+</div>

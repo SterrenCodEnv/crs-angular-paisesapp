@@ -1,0 +1,25 @@
+<h2>Por País</h2>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <app-pais-input [placeholder]="placeholder" (onEnter)="buscar($event)" (onDebounce)="sugerencias($event)"></app-pais-input>
+  </div>
+</div>
+
+<ul class="list-group">
+  <li *ngFor="let pais of paisesSugeridos" class="list-group-item list-group-item-action">
+    <a class="nav-link" [routerLink]="[ '/pais', pais.alpha2Code ]">{{pais.name}}</a>
+  </li>
+</ul>
+
+<hr>
+<div *ngIf="existError" class="alert alert-danger animate__animated animate__shakeX">
+  No hubo respuesta con el <strong>termino</strong> ingresado...
+</div>
+
+<div *ngIf="!existError && paises.length > 0" class="row animate__animated animate__fadeIn">
+  <div class="col">
+    <app-pais-tabla [paises]="paises"></app-pais-tabla>
+  </div>
+</div>
